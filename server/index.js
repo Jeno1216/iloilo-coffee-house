@@ -34,10 +34,7 @@ const RatingModel = require('./models/RatingModel')
 app.use(express.json());
 
 // Configure CORS settings for cross-origin requests
-app.use(cors({
-    origin: ['https://iloilo-coffee-house.vercel.app'],  // Allow requests from this origin
-    credentials: true  // Allow credentials like cookies to be included in requests
-}));
+
 
 // Parse cookies in incoming requests
 app.use(cookieParser());
@@ -129,7 +126,10 @@ const verifyUser = (req, res, next) => {
 };
 
 app.get('/', verifyUser, (req, res) => {
-    return res.json({ _id: req._id, email: req.email, username: req.username });
+    return res.json({ _id: req._id, email: req.email, username: req.username })
+    .then((response) => {
+        res.header("Access-Control-Allow-Origin", "https://iloilo-coffee-house-api.vercel.app")
+    })
 });
 
 // Logout API
