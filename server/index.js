@@ -33,14 +33,7 @@ const RatingModel = require('./models/RatingModel')
 // Enable JSON request and response handling
 app.use(express.json());
 
-// Configure CORS settings for cross-origin requests
-app.use(cors({
-    origin: 'https://iloilo-coffee-house.vercel.app', // Replace with your frontend origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specified HTTP methods
-    credentials: true, // Allow credentials like cookies to be included in requests
-    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed request headers
-    exposedHeaders: ['Authorization'], // Specify exposed response headers
-}));
+app.use(cors());
 
 // Parse cookies in incoming requests
 app.use(cookieParser());
