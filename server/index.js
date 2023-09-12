@@ -35,7 +35,7 @@ app.use(express.json());
 
 // Configure CORS settings for cross-origin requests
 app.use(cors({
-    origin: ['*'],  // Allow requests from this origin
+    origin: ['https://iloilo-coffee-house.vercel.app'],  // Allow requests from this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow specified HTTP methods
     credentials: true  // Allow credentials like cookies to be included in requests
 }));
@@ -205,9 +205,9 @@ app.get('/fetchproductbyid/:id',verifyUser, (req, res) => {
         .then(ratings => {
             res.json({product, ratings})
         })
-        .catch(err => res.json(err))
+        .catch(err => console.log(err))
     })
-    .catch(err => res.json(err)) 
+    .catch(err => console.log(err)) 
 })
 
 // API for Posting User Rating and Review
