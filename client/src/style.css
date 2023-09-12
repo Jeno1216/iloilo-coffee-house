@@ -1,0 +1,93 @@
+*{
+  font-family: 'Inter', sans-serif;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+
+
+/* Mobile Navigation Bar Animation*/
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.mobile-nav-container {
+  animation: slideInFromTop 1s ease-out;
+}
+
+.explore-button{
+  transition: .3s ease-in-out;
+}
+
+.explore-button:hover{
+  background-color: transparent;
+  color: white !important;
+}
+
+/* fixed background image */
+body{
+  background-image: url('/home-background.png');
+  background-attachment: fixed;
+  background-size: cover;
+
+}
+
+#pet-friendly-section{
+  background-color: white;
+}
+
+.rate-review-button:hover{
+  background: transparent !important;
+  color: white !important;
+  border: 1px solid white !important;
+}
+
+.sign-in:hover, .sign-up:hover{
+  backdrop-filter: blur(100px) !important ;
+}
+
+.product-desc-truncate{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5; /* adjust this value based on your desired line height */
+  height: calc(21px * 3); /* set the height to be equivalent to 3 lines of text */
+
+}
+
+.username-input {
+  border: transparent;
+  background: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+}
+
+.username-input::placeholder {
+  color: #A5A5A5 ;
+}
+
+.edit-button, .bi-pencil{
+  transition: .3s;
+}
+.edit-button:hover{
+  background: transparent !important;
+}
+.bi-pencil:hover{
+  color: rgb(255, 255, 255) !important;
+}
+.people{
+  transition: .3s;
+  color: white;
+}
+.people:hover{
+  background-color: rgb(230, 230, 230);
+  color: black !important;
+}
+
