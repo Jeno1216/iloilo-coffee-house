@@ -11,7 +11,7 @@ const [numberOfReviews, setNumberOfReviews] = useState()
 const [numberOfRatings, setNumberOfRatings] = useState()
 
 useEffect(() => {
-    axios.get('http://localhost:3001/fetchuserbyid/' + id)
+    axios.get('/api/fetchuserbyid/' + id)
     .then(response => {
         setUserData(response.data.user)
         setRatings(response.data.ratings)

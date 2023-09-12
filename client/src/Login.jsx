@@ -52,7 +52,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post('https://iloilo-coffee-house-backend.vercel.app/login', {email, password})
+    axios.post('/api/login', {email, password})
     .then(res => {
       if (res.data === 'Success') { // 'Success' is from the server code
         toast.success('Login Successfully.', {

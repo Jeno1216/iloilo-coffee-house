@@ -33,7 +33,7 @@ function ProductIndividual() {
   const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
   useEffect(() => {
-      axios.get('http://localhost:3001/fetchproductbyid/' + id)
+      axios.get('/api/fetchproductbyid/' + id)
       .then(response => {
         if (response.data === 'The token is missing'){
           toast.error('Please Login First.', {
@@ -95,7 +95,7 @@ function ProductIndividual() {
       });
       return; 
     } else {
-    axios.post('http://localhost:3001/ratingreview', { product_id, author_id, rating, review })
+    axios.post('/api/ratingreview', { product_id, author_id, rating, review })
       .then(res => {
         toast.success('Review Passed.', {
           position: toast.POSITION.BOTTOM_CENTER // Change position here
@@ -124,7 +124,7 @@ function ProductIndividual() {
   const [averageRating, setAverageRating] = useState([])
 
   useEffect(() => {
-      axios.get('http://localhost:3001/fetchproductaverage/' + id)
+      axios.get('/api/fetchproductaverage/' + id)
       .then(result => {
         setAverageRating(result.data) // { average: avg, rating_length: ratings.length} here are the data passed from the server
       })

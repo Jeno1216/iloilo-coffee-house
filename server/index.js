@@ -33,12 +33,8 @@ const RatingModel = require('./models/RatingModel')
 // Enable JSON request and response handling
 app.use(express.json());
 
-// Configure CORS settings for cross-origin requests
-app.use(cors({
-    origin: ['*'],  // Allow requests from this origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow specified HTTP methods
-    credentials: true  // Allow credentials like cookies to be included in requests
-}));
+// Enable JSON request and response handling
+app.use(express.static('dist'));
 
 // Parse cookies in incoming requests
 app.use(cookieParser());
@@ -52,7 +48,7 @@ mongoose.connect('mongodb+srv://ich:QE9TfuuR5lXF46eC@ich.vdsul1c.mongodb.net/?re
 // APIs
 
 // API to check if an email exists
-app.get('/check-email/:email', (req, res) => {
+app.get('/api/check-email/:email', (req, res) => {
     const emailToCheck = req.params.email;
 
     // Look for a user with the provided email in the database
@@ -71,7 +67,7 @@ app.get('/check-email/:email', (req, res) => {
 
 
 // API for Registering a User, Posting a User
-app.post('/register', (req, res) => {
+app.post('/api/register', (req, res) => {
     const { username, email, password } = req.body;
 
     // Hash the password and create the user
@@ -85,7 +81,7 @@ app.post('/register', (req, res) => {
 });
 
 //API for Login, Fetching User Information
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     const { email, password } = req.body;
     UserModel.findOne({ email: email })
         .then(user => {
@@ -134,7 +130,7 @@ app.get('/api', verifyUser, (req, res) => {
 });
 
 // Logout API
-app.get('/logout', (req, res) => {
+app.get('/api/logout', (req, res) => {
     res.clearCookie('token') // clear cookie, means user is logged out
     return res.json('Success')
 })
@@ -153,7 +149,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-app.post('/createproducts', verifyUser, upload.single('file') , (req, res) => { // upload.single allows only single file
+app.post('/api/createproducts', verifyUser, upload.single('file') , (req, res) => { // upload.single allows only single file
     ProductModel.create({
         author_id: req.body.author_id,
         title: req.body.title, 
@@ -164,7 +160,7 @@ app.post('/createproducts', verifyUser, upload.single('file') , (req, res) => { 
 });
 
 // fetch products as well as their ratings
-app.get('/fetchproducts', (req, res) => {
+app.get('/api/fetchproducts', (req, res) => {
     // Use the aggregate method on the ProductModel to perform an aggregation pipeline
     // bali since ang 'ratings' collection ta is need nya ang product id sang products
     // para ma determine diin nga ratings ang belong to product. we need to reference the product id to the 
@@ -196,7 +192,7 @@ app.get('/fetchproducts', (req, res) => {
 
 
 // fetch product by id with its ratings
-app.get('/fetchproductbyid/:id',verifyUser, (req, res) => {
+app.get('/api/fetchproductbyid/:id',verifyUser, (req, res) => {
     const id = req.params.id;
     ProductModel.findById({_id: id})
     .then(product => {
@@ -211,7 +207,7 @@ app.get('/fetchproductbyid/:id',verifyUser, (req, res) => {
 })
 
 // API for Posting User Rating and Review
-app.post('/ratingreview', (req, res) => {
+app.post('/api/ratingreview', (req, res) => {
     const { product_id, author_id, rating, review } = req.body;
   
     // Check if a document with the same product_id and author_id already exists
@@ -231,7 +227,7 @@ app.post('/ratingreview', (req, res) => {
   });
   
   // API for Fetching all Ratings of a Specific Product
-  app.get('/fetchproductaverage/:id', (req, res) => {
+  app.get('/api/fetchproductaverage/:id', (req, res) => {
     const product_id  = req.params.id;
   
     // Query the database to retrieve the rating data for the specified product
@@ -252,7 +248,7 @@ app.post('/ratingreview', (req, res) => {
   });
 
   // Profile.jsx
-  app.get('/getuserandrating', verifyUser, async (req, res) => {
+  app.get('/api/getuserandrating', verifyUser, async (req, res) => {
     try {
       // Query the database for the user's ratings
       let ratings = await RatingModel.find({ author_id: req._id }).exec();
@@ -286,7 +282,7 @@ app.post('/ratingreview', (req, res) => {
   });
 
   
-  app.put('/editprofile', upload.single('file'), (req, res) => {
+  app.put('/api/editprofile', upload.single('file'), (req, res) => {
     const id = req.body.id;
     const update = {};
     if (req.body.username) update.username = req.body.username;
@@ -312,7 +308,7 @@ app.post('/ratingreview', (req, res) => {
   
   
 // Fetch/Get User Data
-app.get('/getuserdata', (req, res) => {
+app.get('/api/getuserdata', (req, res) => {
     // retrieve user_id from the request query parameters
     const user_id = req.query.user_id;
 
@@ -323,7 +319,7 @@ app.get('/getuserdata', (req, res) => {
 });
 
 // search for users and as well as their number of ratings and reviews
-app.get('/search', async (req, res) => {
+app.get('/api/search', async (req, res) => {
     try {
         const users = await UserModel.aggregate([
             { $match: { username: { $regex: req.query.name, $options: 'i' } } },
@@ -360,7 +356,7 @@ app.get('/search', async (req, res) => {
 
 
 // fetch product by id with its ratings
-app.get('/fetchuserbyid/:id', async (req, res) => {
+app.get('/api/fetchuserbyid/:id', async (req, res) => {
     try {
         const id = req.params.id;
 
