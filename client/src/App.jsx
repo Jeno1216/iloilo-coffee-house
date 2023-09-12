@@ -23,15 +23,16 @@ function App() {
 
   const [user, setUser] = useState({}) // use this 
 
-  axios.defaults.withCredentials = true;
-  useEffect (() => {
-    axios.get('http://localhost:3001/')
+axios.defaults.withCredentials = true;
+
+useEffect(() => {
+  axios.get('https://iloilo-coffee-house-backend.vercel.app/')
     .then(user => {
       setUser(user.data);
-      console.log(user.data); 
+      console.log(user.data);
     })
-    .catch(err => console.log(err))
-  }, [])
+    .catch(err => console.log(err));
+}, []);
 
   return (
     <>
