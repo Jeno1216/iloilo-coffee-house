@@ -26,7 +26,7 @@ function App() {
 axios.defaults.withCredentials = true;
 
 useEffect(() => {
-  axios.get('http://localhost:3001/')
+  axios.get('https://iloilo-coffee-house-api.vercel.app/')
     .then(user => {
       setUser(user.data);
       console.log(user.data);
