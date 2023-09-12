@@ -35,9 +35,11 @@ app.use(express.json());
 
 // Configure CORS settings for cross-origin requests
 app.use(cors({
-    origin: 'https://iloilo-coffee-house.vercel.app', // Allow requests from this origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow specified HTTP methods
-    credentials: true  // Allow credentials like cookies to be included in requests
+    origin: 'https://iloilo-coffee-house.vercel.app', // Replace with your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specified HTTP methods
+    credentials: true, // Allow credentials like cookies to be included in requests
+    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed request headers
+    exposedHeaders: ['Authorization'], // Specify exposed response headers
 }));
 
 // Parse cookies in incoming requests
