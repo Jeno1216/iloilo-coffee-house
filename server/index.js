@@ -205,9 +205,9 @@ app.get('/fetchproductbyid/:id',verifyUser, (req, res) => {
         .then(ratings => {
             res.json({product, ratings})
         })
-        .catch(err => console.log(err))
+        .catch(err => res.json(err))
     })
-    .catch(err => console.log(err)) 
+    .catch(err => res.json(err)) 
 })
 
 // API for Posting User Rating and Review
