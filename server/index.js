@@ -132,7 +132,7 @@ const verifyUser = (req, res, next) => {
 app.get('/', verifyUser, (req, res) => {
     return res.json({ _id: req._id, email: req.email, username: req.username })
     .then((response) => {
-        res.header("Access-Control-Allow-Origin", "https://iloilo-coffee-house-api.vercel.app")
+        res.header("Access-Control-Allow-Origin", "https://iloilo-coffee-house.vercel.app")
     });
 });
 
@@ -193,6 +193,7 @@ app.get('/fetchproducts', (req, res) => {
     ])
     .then(products => {
         res.json(products); // Send the products array as a JSON response to the client
+        res.header("Access-Control-Allow-Origin", "https://iloilo-coffee-house.vercel.app")
     })
     .catch(err => res.json(err)) // If an error occurs, send the error as a JSON response to the client
 })
