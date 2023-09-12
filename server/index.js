@@ -34,11 +34,11 @@ const RatingModel = require('./models/RatingModel')
 app.use(express.json());
 
 // Configure CORS settings for cross-origin requests
-app.use(cors({
-    origin: ['http://localhost:5173'],  // Allow requests from this origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow specified HTTP methods
-    credentials: true  // Allow credentials like cookies to be included in requests
-}));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+  
 
 // Parse cookies in incoming requests
 app.use(cookieParser());
