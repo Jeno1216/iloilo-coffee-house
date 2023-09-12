@@ -132,7 +132,7 @@ const verifyUser = (req, res, next) => {
 app.get('/', verifyUser, (req, res) => {
     return res.json({ _id: req._id, email: req.email, username: req.username })
     .then((response) => {
-        res.header("Access-Control-Allow-Origin", "https://iloilo-coffee-house.vercel.app/")
+        res.header("Access-Control-Allow-Origin", "https://iloilo-coffee-house.vercel.app")
     });
 });
 
