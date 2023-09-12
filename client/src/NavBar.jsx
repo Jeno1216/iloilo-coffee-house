@@ -40,7 +40,7 @@ function NavBar() {
   const navigate = useNavigate()
   
   const handleLogout = () => {
-    axios.get('/api/logout')
+    axios.get('http://localhost:3001/logout')
     .then(res => {
       if (res.data === 'Success'){
         toast.success('Logout Successfully.', {

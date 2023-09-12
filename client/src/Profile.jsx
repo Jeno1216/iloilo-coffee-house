@@ -16,7 +16,7 @@ function Profile() {
   useEffect(() => {
     // only run this code if user_id is defined
     if (user_id) {
-        axios.get('/api/getuserdata', {
+        axios.get('http://localhost:3001/getuserdata', {
             params: {
                 user_id: user_id
             }
@@ -32,7 +32,7 @@ function Profile() {
     const [numberOfRatings, setNumberOfRatings] = useState()
   const navigate = useNavigate()
     useEffect(() => {
-        axios.get('/api/getuserandrating')
+        axios.get('http://localhost:3001/getuserandrating')
           .then(response => {
             if (response.data === 'The token is missing'){
               toast.error('Please Login First.', {
@@ -73,7 +73,7 @@ function Profile() {
       if (file) formData.append('file', file); // if theres a file then append 
       if (facebook) formData.append('facebook', facebook); // if theres a file then append  
       axios
-        .put('/api/editprofile', formData)
+        .put('http://localhost:3001/editprofile', formData)
         .then((res) => {
           toast.success('Profile Edited Successfully.', {
             position: toast.POSITION.BOTTOM_CENTER // Change position here

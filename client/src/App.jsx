@@ -26,7 +26,7 @@ function App() {
 axios.defaults.withCredentials = true;
 
 useEffect(() => {
-  axios.get('/api')
+  axios.get('http://localhost:3001/')
     .then(user => {
       setUser(user.data);
       console.log(user.data);

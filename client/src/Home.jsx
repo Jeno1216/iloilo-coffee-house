@@ -29,7 +29,7 @@ function Home() {
     useEffect(() =>{
       console.log('Home useEffect is being triggered'); // Add this line
   
-      axios.get('/api/fetchproducts')
+      axios.get('http://localhost:3001/fetchproducts')
       .then(posts => {
           setPosts(posts.data)
         })

@@ -29,7 +29,7 @@ function Products() {
   const [posts, setPosts] = useState([])
 
   useEffect(() =>{
-    axios.get('/api/fetchproducts')
+    axios.get('http://localhost:3001/fetchproducts')
     .then(posts => {
         setPosts(posts.data)
       })
