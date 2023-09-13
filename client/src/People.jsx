@@ -10,7 +10,7 @@ function People() {
     const searchUser = async (e) => {
         setName(e.target.value);
         if (e.target.value !== '') {
-            const res = await axios.get(`http://localhost:3001/search?name=${e.target.value}`);
+            const res = await axios.get(`https://iloilo-coffee-house-api.onrender.com/search?name=${e.target.value}`);
             setUsers(res.data);
         } else {
             setUsers([]);
@@ -32,7 +32,7 @@ function People() {
             {users.map(user => (
                 <Link to={`/people/${user._id}`}  className='people border rounded mt-3 d-flex gap-2 p-2 align-items-center text-decoration-none' style={{backdropFilter: 'blur(10px)'}}>
                     <div className='border rounded-circle' style={{height: '40px', width: '40px'}}>
-                        <img className='element-tilt rounded-circle' src={`http://localhost:3001/Images/${user.file}`} alt="Image" style={{width: '100%', objectFit: 'cover'}}
+                        <img className='element-tilt rounded-circle' src={`https://iloilo-coffee-house-api.onrender.com/Images/${user.file}`} alt="Image" style={{width: '100%', objectFit: 'cover'}}
                         onError={(e) => {
                             e.target.src = '/login-image.jpg';
                         }} />

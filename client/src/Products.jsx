@@ -29,7 +29,7 @@ function Products() {
   const [posts, setPosts] = useState([])
 
   useEffect(() =>{
-    axios.get('http://localhost:3001/fetchproducts')
+    axios.get('https://iloilo-coffee-house-api.onrender.com/fetchproducts')
     .then(posts => {
         setPosts(posts.data)
       })
@@ -156,7 +156,7 @@ function Products() {
             <div className='col-lg-2 col-md-4 col-sm-6 col-6 p-lg-2 p-md-2 p-2'>
               <div className='border shadow rounded-3 p-2' style={{backdropFilter:'blur(10px)'}}>
                 <div className=''>
-                  <img className='element-tilt' src={`http://localhost:3001/Images/${post.file}`} alt="placeholder" style={{width: '100%'}} />
+                  <img className='element-tilt' src={`https://iloilo-coffee-house-api.onrender.com/Images/${post.file}`} alt="placeholder" style={{width: '100%'}} />
                 </div>
                 <div>
                   <p className='m-0' style={{fontWeight: '900', color: 'white', fontSize: '20px', textAlign: 'start'}}>{post.title}</p>

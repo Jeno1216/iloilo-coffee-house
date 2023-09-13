@@ -11,7 +11,7 @@ const [numberOfReviews, setNumberOfReviews] = useState()
 const [numberOfRatings, setNumberOfRatings] = useState()
 
 useEffect(() => {
-    axios.get('http://localhost:3001/fetchuserbyid/' + id)
+    axios.get('https://iloilo-coffee-house-api.onrender.com/fetchuserbyid/' + id)
     .then(response => {
         setUserData(response.data.user)
         setRatings(response.data.ratings)

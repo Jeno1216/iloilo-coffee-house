@@ -16,7 +16,7 @@ function Profile() {
   useEffect(() => {
     // only run this code if user_id is defined
     if (user_id) {
-        axios.get('http://localhost:3001/getuserdata', {
+        axios.get('https://iloilo-coffee-house-api.onrender.com/getuserdata', {
             params: {
                 user_id: user_id
             }
@@ -32,7 +32,7 @@ function Profile() {
     const [numberOfRatings, setNumberOfRatings] = useState()
   const navigate = useNavigate()
     useEffect(() => {
-        axios.get('http://localhost:3001/getuserandrating')
+        axios.get('https://iloilo-coffee-house-api.onrender.com/getuserandrating')
           .then(response => {
             if (response.data === 'The token is missing'){
               toast.error('Please Login First.', {
@@ -73,7 +73,7 @@ function Profile() {
       if (file) formData.append('file', file); // if theres a file then append 
       if (facebook) formData.append('facebook', facebook); // if theres a file then append  
       axios
-        .put('http://localhost:3001/editprofile', formData)
+        .put('https://iloilo-coffee-house-api.onrender.com/editprofile', formData)
         .then((res) => {
           toast.success('Profile Edited Successfully.', {
             position: toast.POSITION.BOTTOM_CENTER // Change position here
@@ -118,7 +118,7 @@ return (
                             <div className='border rounded-circle mb-2' style={{ width: '150px', height: '150px' }}>
                             <img
                               className='element-tilt w-100 h-100 rounded-circle'
-                              src={`http://localhost:3001/Images/${post.file}`}
+                              src={`https://iloilo-coffee-house-api.onrender.com/Images/${post.file}`}
                               alt="placeholder"
                               style={{width: '100%', objectFit: 'cover'}}
                               onError={(e) => {
@@ -208,7 +208,7 @@ return (
     <div className='w-100 mb-3 border rounded-3 shadow p-2' key={rating._id} style={{backdropFilter: 'blur(10px)'}}>
       <div className='p-2 d-flex gap-2'>
         <div className=' ' style={{ width: '50px', height: '50px' }}>
-          <img className='w-100 h-100' src={`http://localhost:3001/Images/${rating.product_id.file}`} alt="" style={{ objectFit: 'cover' }} />
+          <img className='w-100 h-100' src={`https://iloilo-coffee-house-api.onrender.com/Images/${rating.product_id.file}`} alt="" style={{ objectFit: 'cover' }} />
         </div>
         <div className=' d-flex flex-column'>
           <p className='text-light m-0'> {rating.product_id.title}</p>

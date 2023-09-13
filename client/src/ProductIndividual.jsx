@@ -33,7 +33,7 @@ function ProductIndividual() {
   const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
   useEffect(() => {
-      axios.get('http://localhost:3001/fetchproductbyid/' + id)
+      axios.get('https://iloilo-coffee-house-api.onrender.com/fetchproductbyid/' + id)
       .then(response => {
         if (response.data === 'The token is missing'){
           toast.error('Please Login First.', {
@@ -95,7 +95,7 @@ function ProductIndividual() {
       });
       return; 
     } else {
-    axios.post('http://localhost:3001/ratingreview', { product_id, author_id, rating, review })
+    axios.post('https://iloilo-coffee-house-api.onrender.com/ratingreview', { product_id, author_id, rating, review })
       .then(res => {
         toast.success('Review Passed.', {
           position: toast.POSITION.BOTTOM_CENTER // Change position here
@@ -124,7 +124,7 @@ function ProductIndividual() {
   const [averageRating, setAverageRating] = useState([])
 
   useEffect(() => {
-      axios.get('http://localhost:3001/fetchproductaverage/' + id)
+      axios.get('https://iloilo-coffee-house-api.onrender.com/fetchproductaverage/' + id)
       .then(result => {
         setAverageRating(result.data) // { average: avg, rating_length: ratings.length} here are the data passed from the server
       })
@@ -142,7 +142,7 @@ function ProductIndividual() {
     <div className='col-lg-6 col-md-6 col-sm-12 col-12 p-lg-3 p-md-3 p-2'  >
       <div className='element-tilt border rounded-3 p-3'  style={{backdropFilter:'blur(10px)', minHeight: '350px'}}>
         <div className='' data-aos="fade">
-          <img className='' src={`http://localhost:3001/Images/${product.file}`} alt="placeholder" style={{width: '150px'}} />
+          <img className='' src={`https://iloilo-coffee-house-api.onrender.com/Images/${product.file}`} alt="placeholder" style={{width: '150px'}} />
         </div>
         <div data-aos="fade">
           <p className='m-0'  style={{fontWeight: '900', color: 'white', fontSize: '20px', textAlign: 'start'}}>{product.title}</p>
@@ -225,7 +225,7 @@ function ProductIndividual() {
       <div className='mb-3 border rounded-3 shadow p-2' key={rating._id} style={{ backdropFilter: 'blur(10px)' }}>
         <div className=' p-2 d-flex gap-2'>
           <div className='border rounded-5' style={{ width: '50px', height: '50px' }}>
-            <img className='w-100 h-100 rounded-5' src={`http://localhost:3001/Images/${rating.author_id?.file}`} alt="" style={{ objectFit: 'cover' }} 
+            <img className='w-100 h-100 rounded-5' src={`https://iloilo-coffee-house-api.onrender.com/Images/${rating.author_id?.file}`} alt="" style={{ objectFit: 'cover' }} 
             onError={(e) => {
               e.target.src = '/login-image.jpg';
             }}/>

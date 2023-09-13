@@ -24,14 +24,15 @@ function App() {
   const [user, setUser] = useState({}) // use this 
 
 axios.defaults.withCredentials = true;
-
 useEffect(() => {
   axios.get('https://iloilo-coffee-house-api.vercel.app/')
     .then(user => {
       setUser(user.data);
       console.log(user.data);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.error('Error:', err);
+    });
 }, []);
 
   return (
